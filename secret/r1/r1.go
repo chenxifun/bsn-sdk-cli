@@ -8,7 +8,7 @@ import (
 	"encoding/base64"
 	"fmt"
 	"github.com/BSNDA/PCNGateway-Go-SDK/pkg/util/crypto/secp256r1"
-	"github.com/BSNDA/PCNGateway-Go-SDK/third_party/github.com/hyperledger/fabric/bccsp/utils"
+	utils "github.com/chenxifun/bsn-sdk-cli/common"
 )
 
 func NewKey(data string) {

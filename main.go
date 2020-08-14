@@ -8,7 +8,7 @@ import (
 )
 
 var mainCmd = &cobra.Command{
-	Use: "bsnCli"}
+	Use: "bsn-sdk-cli"}
 
 func main() {
 
