@@ -42,7 +42,6 @@ func NewKey(data string) {
 	fmt.Println("签名数据：", data)
 
 	h := sha256.New()
-
 	h.Write([]byte(data))
 	digest := h.Sum(nil)
 

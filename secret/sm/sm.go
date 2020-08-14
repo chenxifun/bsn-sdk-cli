@@ -1,6 +1,9 @@
 package sm
 
 import (
+	"crypto/ecdsa"
+	"crypto/rand"
+	"crypto/sha256"
 	"encoding/base64"
 	"fmt"
 	"github.com/tjfoc/gmsm/sm2"
@@ -38,9 +41,20 @@ func NewKey(data string) {
 
 	fmt.Println("签名数据：", data)
 
-	digest := []byte(data)
+	h := sha256.New()
+	h.Write([]byte(data))
+	digest := h.Sum(nil)
 
-	r, s, err := sm2.Sm2Sign(pk, digest, default_uid)
+	epk := &ecdsa.PrivateKey{
+		PublicKey: ecdsa.PublicKey{
+			Curve: sm2.P256Sm2(),
+			X:     pk.X,
+			Y:     pk.Y,
+		},
+		D: pk.D,
+	}
+	//门户验证使用了SHA256WITHECDSA 验证签名，所以这里使用了ECDSA的签名方式,在网关依然使用 SM3WITHSM2
+	r, s, err := ecdsa.Sign(rand.Reader, epk, digest) //sm2.Sm2Sign(pk, digest, default_uid)
 	sign, err := sm2.SignDigitToSignData(r, s)
 
 	if err != nil {
