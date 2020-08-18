@@ -3,11 +3,11 @@
 
 ## 1. 生成sm2、secp25r1、secp256k1 格式的密钥，并且生成测试的签名数据
 
-> go版本需要1.13及以上
-> go get github.com/chenxifun/bsn-sdk-cli
-> 代理`go env -w GOPROXY=https://goproxy.cn,direct`
+> go版本需要1.13及以上  
+> go get github.com/chenxifun/bsn-sdk-cli  
+> 代码下载不了，可以使用代理 `go env -w GOPROXY=https://goproxy.cn,direct`  
+命令如下：
 ```
-bsn-sdk-cli --algo sm --data 123456
 参数
     --algo  算法类型可选为【sm2、secp25r1、secp256k1】
        sm2              适用于国密签名算法的密钥
